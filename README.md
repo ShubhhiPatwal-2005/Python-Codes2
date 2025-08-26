@@ -1,0 +1,1 @@
+Automated Web Scraper with Scheduler is a project which is based on the Python based web scraper, which runs automatically on a schedule. It fetched data from a website and stores it for later analysis.
