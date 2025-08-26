@@ -1,0 +1,23 @@
+Automated Web- Scraper with scheduler-
+
+import requests
+from bs4 import BeautifulSoup
+import schedule
+import time
+
+def scrape_bbc():
+    url = "https://www.bbc.com/news"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    headlines = soup.find_all("h2")[:5]  # Top 5 headlines
+    print("\nLatest BBC Headlines:")
+    for h in headlines:
+        print("-", h.get_text(strip=True))
+
+schedule.every(1).minutes.do(scrape_bbc)
+
+print("Starting scheduler... Press Ctrl+C to stop.")
+while True:
+    schedule.run_pending()
+    time.sleep(1)
